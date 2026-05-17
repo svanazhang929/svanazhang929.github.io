@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Business Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f0e0c;
+      --paper: #f5f2ec;
+      --accent: #c84b2f;
+      --muted: #8a8680;
+      --rule: #d6d2c8;
+      --card: #fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(1.5rem, 6vw, 5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    nav a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem);
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      margin-top: 1.8rem;
+      max-width: 42ch;
+      color: var(--muted);
+      font-size: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.35s forwards;
+    }
+
+    .hero-meta {
+      text-align: right;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 2;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.4s forwards;
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 0.9rem;
+    }
+
+    .cta-row {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.5s forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: #a83a20; border-color: #a83a20; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .btn-outline:hover { border-color: var(--ink); }
+
+    /* ── SECTION ─────────────────────────────────────── */
+    section {
+      padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── SKILLS STRIP ────────────────────────────────── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .skill-tag {
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--card);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── DASHBOARD GRID ──────────────────────────────── */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+      gap: 2rem;
+    }
+
+    .dash-card {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .dash-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .dash-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #edeae3;
+      border: none;
+      display: block;
+
+      /* PLACEHOLDER — replace with real embed */
+      position: relative;
+    }
+
+    /* Placeholder visual inside iframe-less cards */
+    .dash-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #edeae3 0%, #e2ddd5 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+
+    .dash-placeholder svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.35;
+    }
+
+    .dash-body {
+      padding: 1.4rem 1.6rem 1.6rem;
+    }
+
+    .dash-category {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .dash-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .dash-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .dash-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tool-badge {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      background: var(--paper);
+      border-radius: 2px;
+      color: var(--muted);
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-meta { text-align: left; }
+    }
+
+    .about-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.88rem;
+    }
+
+    .fact-row:last-child { border-bottom: none; }
+
+    .fact-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .fact-value { font-weight: 500; }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    .contact-inner {
+      max-width: 520px;
+    }
+
+    .contact-inner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      background: var(--card);
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 2rem clamp(1.5rem, 6vw, 5rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ── ANIMATION ───────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <a class="logo" href="#">YourName.</a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div>
+      <p class="hero-tag">Business Analyst · Open to opportunities</p>
+      <h1>Data that <em>drives</em> decisions.</h1>
+      <p class="hero-desc">
+        I turn messy business problems into clear insights — through structured analysis,
+        stakeholder collaboration, and dashboards people actually use.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#work">View my work</a>
+        <a class="btn btn-outline" href="resume.pdf" target="_blank">Download CV</a>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <strong>Based in</strong> Sydney, AU
+      <strong style="margin-top:1rem;">Available</strong> Immediately
+      <strong style="margin-top:1rem;">Open to</strong> Full-time · Contract
+    </div>
+  </div>
+
+  <!-- ── SKILLS ── -->
+  <section>
+    <p class="section-label">Skills &amp; Tools</p>
+    <div class="skills-grid">
+      <span class="skill-tag">Tableau</span>
+      <span class="skill-tag">Power BI</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Excel / Power Query</span>
+      <span class="skill-tag">Python (basic)</span>
+      <span class="skill-tag">Requirements Gathering</span>
+      <span class="skill-tag">Process Mapping</span>
+      <span class="skill-tag">Stakeholder Management</span>
+      <span class="skill-tag">Agile / Scrum</span>
+      <span class="skill-tag">JIRA</span>
+      <span class="skill-tag">Confluence</span>
+      <span class="skill-tag">Data Storytelling</span>
+    </div>
+  </section>
+
+  <!-- ── DASHBOARDS ── -->
+  <section id="work">
+    <p class="section-label">Selected Work</p>
+    <div class="dash-grid">
+
+      <!-- CARD 1 — paste your Tableau Public embed URL in the iframe src -->
+      <div class="dash-card">
+        <!--
+          OPTION A: Tableau Public iframe
+          Replace the src with your own Tableau Public embed link.
+          Get it from: Tableau Public → Share → Embed Code → copy the src URL.
+          <iframe class="dash-embed"
+            src="https://public.tableau.com/views/YourVizName/Sheet1?:showVizHome=no&:embed=true"
+            scrolling="no" allowfullscreen></iframe>
+        -->
+        <div class="dash-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          Paste your Tableau / Power BI embed here
+        </div>
+        <div class="dash-body">
+          <p class="dash-category">Sales Analysis</p>
+          <h3 class="dash-title">Regional Sales Performance Dashboard</h3>
+          <p class="dash-desc">
+            Tracked $12M in pipeline across 4 regions. Identified a 22% revenue drop in
+            Q3 linked to distributor churn — enabling a targeted retention campaign.
+          </p>
+          <div class="dash-tools">
+            <span class="tool-badge">Tableau</span>
+            <span class="tool-badge">SQL</span>
+            <span class="tool-badge">Salesforce</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="dash-card">
+        <div class="dash-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          Paste your Tableau / Power BI embed here
+        </div>
+        <div class="dash-body">
+          <p class="dash-category">Operations</p>
+          <h3 class="dash-title">Supply Chain Delay Tracker</h3>
+          <p class="dash-desc">
+            Built a real-time delay monitor for a logistics team of 40+. Reduced average
+            resolution time by 35% by surfacing bottlenecks early in the process.
+          </p>
+          <div class="dash-tools">
+            <span class="tool-badge">Power BI</span>
+            <span class="tool-badge">Excel</span>
+            <span class="tool-badge">SharePoint</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="dash-card">
+        <div class="dash-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+          Paste your Tableau / Power BI embed here
+        </div>
+        <div class="dash-body">
+          <p class="dash-category">Finance</p>
+          <h3 class="dash-title">Budget Variance Report</h3>
+          <p class="dash-desc">
+            Automated a monthly reporting pack previously done manually in 8 hours.
+            Reduced close time to under 45 minutes and eliminated recurring data errors.
+          </p>
+          <div class="dash-tools">
+            <span class="tool-badge">Power BI</span>
+            <span class="tool-badge">Power Query</span>
+            <span class="tool-badge">DAX</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.dash-grid -->
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Business analyst with a bias for clarity.</h2>
+        <p>
+          I've spent [X] years bridging the gap between business stakeholders and data teams —
+          translating ambiguous problems into requirements that engineers can build and
+          executives can understand.
+        </p>
+        <p>
+          My background is in [your industry — e.g. financial services / retail / healthcare].
+          I'm most energised when I'm untangling a messy process or finding the story
+          hidden in a dataset.
+        </p>
+        <div style="margin-top: 1.8rem;">
+          <a class="btn btn-outline" href="resume.pdf" target="_blank">View full resume →</a>
+        </div>
+      </div>
+      <div class="about-facts">
+        <div class="fact-row">
+          <span class="fact-label">Experience</span>
+          <span class="fact-value">[X] years</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Industry</span>
+          <span class="fact-value">[Your industry]</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Education</span>
+          <span class="fact-value">[Degree, University]</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Certifications</span>
+          <span class="fact-value">[e.g. Tableau Desktop Specialist]</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Location</span>
+          <span class="fact-value">Sydney, AU · Open to remote</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <div class="contact-inner">
+      <h2>Let's work together.</h2>
+      <p>Open to full-time roles and contract work. Always happy to have a conversation.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:you@email.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          you@email.com
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/yourhandle" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+          linkedin.com/in/yourhandle
+        </a>
+        <a class="contact-link" href="https://public.tableau.com/profile/yourhandle" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+          Tableau Public Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span>© 2026 Your Name</span>
+    <span>Built with GitHub Pages</span>
+  </footer>
+
+</body>
+</html>
