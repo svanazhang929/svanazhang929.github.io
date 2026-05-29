@@ -205,7 +205,7 @@
     /* ── DASHBOARD GRID ──────────────────────────────── */
     .dash-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 500px), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
       gap: 2rem;
     }
 
@@ -487,7 +487,7 @@
       </a>
 
       <!-- CARD 2 -->
-      <a class="dash-card" href="https://www.linkedin.com/posts/svanazhang0929_while-most-people-are-still-processing-data-ugcPost-7466105488921788416-pyNr/" target="_blank" rel="noopener noreferrer">
+      <div class="dash-card" style="cursor:pointer;" onclick="window.open('https://www.linkedin.com/posts/svanazhang0929_while-most-people-are-still-processing-data-ugcPost-7466105488921788416-pyNr/','_blank')">
         <img src="hostsense-cover.png" alt="HostSense dashboard cover" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;" />
         <div class="dash-body" style="padding-top:2rem;">
           <p class="dash-category">AI · Agentic Workflow</p>
@@ -498,8 +498,12 @@
             per host — reducing a 3–4 hour manual process to under 10 minutes. Identified 822
             high-risk hosts representing $12.3M estimated revenue at risk.
           </p>
-          <p style="font-size:0.8rem;color:var(--accent);margin-bottom:0.5rem;letter-spacing:0.02em;"><a href="https://hostsense-mrt7ntqipxtcrebrooztti.streamlit.app" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;" onclick="event.stopPropagation()">View live demo →</a></p>
-          <p style="font-size:0.8rem;color:var(--accent);margin-bottom:1.4rem;letter-spacing:0.02em;">Read case study →</p>
+          <p style="font-size:0.8rem;margin-bottom:0.5rem;letter-spacing:0.02em;">
+            <a href="https://hostsense-mrt7ntqipxtcrebrooztti.streamlit.app" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;" onclick="event.stopPropagation()">View live demo →</a>
+          </p>
+          <p style="font-size:0.8rem;margin-bottom:1.4rem;letter-spacing:0.02em;">
+            <a href="https://www.linkedin.com/posts/svanazhang0929_while-most-people-are-still-processing-data-ugcPost-7466105488921788416-pyNr/" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;" onclick="event.stopPropagation()">Read case study →</a>
+          </p>
           <div class="dash-tools">
             <span class="tool-badge">Python</span>
             <span class="tool-badge">SQL</span>
@@ -508,7 +512,7 @@
             <span class="tool-badge">SQLite</span>
           </div>
         </div>
-      </a>
+      </div>
 
     </div><!-- /.dash-grid -->
   </section>
