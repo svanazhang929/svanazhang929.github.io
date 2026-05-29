@@ -215,6 +215,9 @@
       border-radius: 2px;
       overflow: hidden;
       transition: box-shadow 0.25s, transform 0.25s;
+      display: block;
+      text-decoration: none;
+      color: inherit;
     }
     .dash-card:hover {
       box-shadow: 0 8px 32px rgba(0,0,0,0.08);
@@ -459,13 +462,8 @@
     <div class="dash-grid">
 
       <!-- CARD 1 -->
-      <div class="dash-card">
-        <div class="dash-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/>
-          </svg>
-          Paste your Power BI embed here
-        </div>
+      <a class="dash-card" href="https://www.linkedin.com/posts/svanazhang0929_powerbi-dataanalytics-customerexperience-ugcPost-7465774077606010881-JmQT/" target="_blank" rel="noopener noreferrer">
+        <img src="messina-cover.png" alt="Gelato Messina dashboard cover" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;" />
         <div class="dash-body">
           <p class="dash-category">Customer Analytics · Gelato Messina</p>
           <h3 class="dash-title">What Actually Drives Messina's Ratings?</h3>
@@ -485,7 +483,7 @@
             <span class="tool-badge">Linear Regression</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- CARD 2 -->
       <div class="dash-card">
